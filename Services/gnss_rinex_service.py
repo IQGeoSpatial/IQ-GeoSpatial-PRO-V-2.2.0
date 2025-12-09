@@ -2,6 +2,7 @@ import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
 
+# Logica  de la conversion de GNSS a RINEX
 def convertir_gnss_a_rinex(archivos_gnss, version_rinex, sampling_interval, output_obs=True, output_nav=True, output_dir=".", formato="auto"):
     resultados = []
     convbin_path = os.path.abspath(os.path.join("bin", "convbin.exe"))

@@ -13,8 +13,7 @@ class SplashScreen(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
-        self.setFixedSize(700, 480) # Más ancho
-        # Fondo con la imagen portada.jpeg
+        self.setFixedSize(700, 480) 
         portada_path = resource_path(os.path.join("Assets", "Image", "portada.jpeg"))
         self._portada_pixmap = QPixmap(portada_path)
         self.setStyleSheet("")
@@ -24,13 +23,11 @@ class SplashScreen(QWidget):
         layout.addStretch(2)
         layout.addSpacing(20)
 
-        # Etiqueta de estado
         self.status_label = QLabel("Cargando componentes de IQ GeoSpatial...")
         self.status_label.setAlignment(Qt.AlignCenter)
         self.status_label.setStyleSheet("color: #B0E0E6; font-size: 12px; font-weight: bold; background: transparent; text-shadow: 1px 1px 4px #000000;")
         layout.addWidget(self.status_label)
 
-        # Barra de progreso
         self.progress_bar = QProgressBar()
         self.progress_bar.setTextVisible(True)
         self.progress_bar.setRange(0, 100)
@@ -49,9 +46,8 @@ class SplashScreen(QWidget):
             }
         """)
         layout.addWidget(self.progress_bar)
-        layout.addStretch(1) # Añade menos espacio flexible en la parte inferior
+        layout.addStretch(1) 
 
-        # Etiqueta de versión en la esquina inferior izquierda
         self.version_label = QLabel("V 2.2.0", self)
         self.version_label.setStyleSheet("color: #FFFFFF; font-size: 12px; font-weight: bold; background: transparent; text-shadow: 1px 1px 2px #000;")
         self.version_label.adjustSize()

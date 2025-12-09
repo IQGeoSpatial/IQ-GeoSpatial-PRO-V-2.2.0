@@ -3,9 +3,10 @@
 *.dll
 dist/
 env/
-Output/
 build/
 __pycache__/
 config.ini
 main.spec
 generar_licencia.py
+licencia_utils.py
+obtener_mac.bat

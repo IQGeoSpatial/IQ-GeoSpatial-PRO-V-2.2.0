@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QGridLayo
 from PyQt5.QtGui import QPixmap, QIcon, QPainter, QLinearGradient, QColor
 from PyQt5.QtCore import Qt, QSize
 from utils.resource_path import resource_path
-# La lógica de licencia ha sido eliminada.
 from Controllers.dashboard_controller import DashboardController
 from GUI.gnss_rinex_view import GNSSRinexView
 from GUI.conversion_coordenadas_view import ConversionCoordenadasView
@@ -13,13 +12,12 @@ from GUI.help_view import HelpView
 class DashboardApp(QWidget):
     def __init__(self):
         super().__init__()
-        # Declarar los botones antes de init_ui para que existan
         self.btn_expediente = None
         self.btn_formularios = None
         self.btn_efemerides = None
         self.btn_pdf_converter = None
         self.theme_btn = None
-        self.btn_placeholder2 = None # Botón para "Próximamente"
+        self.btn_placeholder2 = None 
 
         self.controller = DashboardController(self)
         self.init_ui()
@@ -35,12 +33,11 @@ class DashboardApp(QWidget):
 
         main_layout = QVBoxLayout(self)
         main_layout.setContentsMargins(40, 30, 40, 40)
-        main_layout.setSpacing(2) # Espaciado general entre elementos
+        main_layout.setSpacing(2) 
 
-        # --- Cabecera ---
         header_widget = self._crear_cabecera()
         main_layout.addWidget(header_widget)
-        main_layout.addSpacing(6) # Espacio extra (margin-bottom) reducido
+        main_layout.addSpacing(6) 
 
         # --- Grid de Botones ---
         grid_layout = QGridLayout()
@@ -68,7 +65,7 @@ class DashboardApp(QWidget):
         grid_layout.addWidget(self.btn_gnss_conversion_rinex, 1, 2)
         grid_layout.addWidget(self.btn_ayuda_extra, 1, 3)
 
-        # Fila 3 (botones deshabilitados)
+        # Fila 3 
         self.btn_youtube = self._crear_boton_dashboard("youtube.png", "Tutorial", self.controller.mostrar_video, "Ver tutorial en YouTube.")
         self.btn_placeholder2 = self._crear_boton_dashboard("add.png", "Módulo B", None, "Próximamente.", enabled=False)
 
@@ -103,28 +100,23 @@ class DashboardApp(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(10)
 
-        # Logo
-        logo_label1 = QLabel()  # Primer QLabel para la mitad superior
+        logo_label1 = QLabel() 
         logo_label1.setStyleSheet("background: transparent;")
         logo_path = resource_path(os.path.join("Assets", "Icono", "icono.ico"))
         if os.path.exists(logo_path):
             original_pixmap = QPixmap(logo_path).scaled(140, 140, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
-            # Crear un pixmap con el efecto de difuminado superior
             faded_pixmap = QPixmap(original_pixmap.size())
-            faded_pixmap.fill(Qt.transparent) # Empezar con un fondo transparente
+            faded_pixmap.fill(Qt.transparent) 
 
             painter = QPainter(faded_pixmap)
-            # 1. Dibuja la imagen original
             painter.drawPixmap(0, 0, original_pixmap)
 
-            # 2. Prepara un gradiente para usar como máscara de opacidad
             gradient = QLinearGradient(0, 0, 0, faded_pixmap.height())
-            gradient.setColorAt(0.0, QColor(0, 0, 0, 0))      # Totalmente transparente arriba
-            gradient.setColorAt(0.4, QColor(0, 0, 0, 255))    # Se vuelve opaco
-            gradient.setColorAt(1.0, QColor(0, 0, 0, 255))    # Permanece opaco hasta el final
+            gradient.setColorAt(0.0, QColor(0, 0, 0, 0))     
+            gradient.setColorAt(0.4, QColor(0, 0, 0, 255)) 
+            gradient.setColorAt(1.0, QColor(0, 0, 0, 255))  
 
-            # 3. Aplica el gradiente como máscara (modo DestinationIn)
             painter.setCompositionMode(QPainter.CompositionMode_DestinationIn)
             painter.fillRect(faded_pixmap.rect(), gradient)
             painter.end()
@@ -132,20 +124,18 @@ class DashboardApp(QWidget):
             logo_label1.setPixmap(faded_pixmap)
         layout.addWidget(logo_label1, alignment=Qt.AlignTop)
 
-        # Título y Slogan
         text_layout = QVBoxLayout()        
-        text_layout.setSpacing(0) # Usaremos addSpacing para control manual
+        text_layout.setSpacing(0) 
         title_label = QLabel("IQ GeoSpatial Pro")
         title_label.setObjectName("HeaderTitle")
         slogan_label = QLabel("Tu solución integral para la gestión de datos geodésicos.")
         slogan_label.setObjectName("HeaderSlogan")
         
         text_layout.addWidget(title_label)
-        text_layout.addSpacing(10) # Espacio entre título y slogan
+        text_layout.addSpacing(10) 
         text_layout.addWidget(slogan_label)
 
-        # Botón de Detalles
-        text_layout.addSpacing(15) # Espacio entre slogan y botón
+        text_layout.addSpacing(15) 
         btn_detalles = QPushButton("DETALLES")
         btn_detalles.setObjectName("DetallesBtn")
         btn_detalles.setCursor(Qt.PointingHandCursor)
@@ -155,7 +145,6 @@ class DashboardApp(QWidget):
 
         layout.addLayout(text_layout, stretch=2)
         
-        # Layout para botones de la esquina
         top_right_layout = QHBoxLayout()
         top_right_layout.setSpacing(10)
 
@@ -176,7 +165,7 @@ class DashboardApp(QWidget):
             Info_btn.setIcon(QIcon(info_icon_path))
             Info_btn.setIconSize(QSize(24, 24))
         else:
-            Info_btn.setText("i") # Texto alternativo si no se encuentra el icono
+            Info_btn.setText("i") 
 
         Info_btn.clicked.connect(self.mostrar_informacion)
         top_right_layout.addWidget(Info_btn)
@@ -186,7 +175,7 @@ class DashboardApp(QWidget):
 
         return header_widget
 
-
+    # Crear los botones del dashboard
     def _crear_boton_dashboard(self, icon_name, text, callback, tooltip="", enabled=True):
         """Crea un QToolButton estilizado para el dashboard."""
         button = QToolButton()
@@ -219,7 +208,7 @@ class DashboardApp(QWidget):
             columnas = 5
         elif 1000 <= ancho <= 1200:
             columnas = 4
-        else:  # ancho < 800
+        else: 
             columnas = 3
 
         # Calcular espacio vertical en base al alto
@@ -259,7 +248,7 @@ class DashboardApp(QWidget):
     def mostrar_informacion(self):
         msg = QMessageBox(self)
         msg.setWindowTitle("Información")
-        msg.setIcon(QMessageBox.Information) # El estilo se hereda del tema global
+        msg.setIcon(QMessageBox.Information) 
         msg.setText(
             '<span style="color:#e53935;"><b>IQ GeoSpatial Pro</b></span><br><br>'
             'Version: 2.2.0<br>'

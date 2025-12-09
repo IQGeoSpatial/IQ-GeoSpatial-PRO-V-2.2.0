@@ -1,6 +1,12 @@
-# IQ GeoSpatial-PRO
+<p align="center">
+  <img src="Assets/Image/readme.png" alt="IQ GeoSpatial Technology" width="700">
+</p>
+
+# IQ GeoSpatial-PRO V 2.2.0
 
 Aplicación de escritorio desarrollada en Python y PyQt5 para el procesamiento y visualización de datos geoespaciales.
+
+## By IQ GeoSpatial Technology
 
 ## Características Principales
 
@@ -40,7 +46,7 @@ Para ejecutar la aplicación desde el código fuente, sigue estos pasos:
 1.  **Clonar el Repositorio** (si está en un control de versiones como Git)
     ```bash
     git clone <url-del-repositorio>
-    cd IQ-GeoSpatial-PRO-V-2.1.0
+    cd IQ-GeoSpatial-PRO-V-2.2.0
     ```
 
 2.  **Crear un Entorno Virtual**
@@ -70,7 +76,7 @@ Para ejecutar la aplicación desde el código fuente, sigue estos pasos:
 Una vez que el entorno está configurado y las dependencias instaladas, puedes ejecutar la aplicación con el siguiente comando:
 
 ```bash
-python main.py
+python3 -m main
 ```
 
 ## Compilación del Ejecutable
@@ -106,5 +112,17 @@ Es el corazón de la aplicación. Sus responsabilidades son:
 ### `GUI/`
 Este paquete contiene todos los componentes de la interfaz de usuario.
 
-### `utils/`
+### `Utils/`
 Este paquete contiene funciones de ayuda como `resource_path.py`, que es crucial para que PyInstaller encuentre los `Assets`.
+
+### `Controllers/`
+Este paquete contiene todos los controladores de la aplicación
+
+### `Models/`
+Este paquete  contiene las clases o estructuras que representan los datos y la lógica de negocio pura
+
+### `Services/`
+Este paquete contienen la lógica externa o funcionalidad independiente que no pertenece directamente a un Model, pero que tu aplicación necesita para operar.
+
+---
+© 2025 IQ GeoSpatial Technology

@@ -1,6 +1,7 @@
 import utm
 from utils.map_utils import este_norte_a_latlon
 
+# Convertir de geograficas a UTM
 def convertir(sistema_origen, sistema_destino, valores):
     if sistema_origen == "Elipsoidal" and sistema_destino == "UTM":
         try:
@@ -17,7 +18,7 @@ def convertir(sistema_origen, sistema_destino, valores):
             este = float(valores[0])
             norte = float(valores[1])
             zona = int(valores[3])
-            hemisferio_sur = True  # Ajusta según tu lógica
+            hemisferio_sur = True  
             lat, lon = este_norte_a_latlon(este, norte, zona, hemisferio_sur)
             altura = valores[2] if len(valores) > 3 else ""
             # Si la conversión falla, lat/lon serán None

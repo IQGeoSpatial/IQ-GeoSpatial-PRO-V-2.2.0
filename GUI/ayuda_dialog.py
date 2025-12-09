@@ -28,17 +28,8 @@ class AyudaDialog(QDialog):
         self.webview = QWebEngineView()
         layout.addWidget(self.webview)
 
-        # --- ¡IMPORTANTE! ---
-        # Reemplaza la siguiente línea con el ID de tu video de YouTube.
-        # Si la URL de tu video es: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-        # El ID que debes poner abajo es: "dQw4w9WgXcQ"
-        #https://youtu.be/AZY0F_B5gw0
-        youtube_video_id = "AZY0F_B5gw0" # <-- REEMPLAZA ESTE ID DE EJEMPLO
+        youtube_video_id = "AZY0F_B5gw0" 
         
-        # Construir la URL de inserción (embed) para YouTube.
-        # Se usará la API de IFrame de YouTube para forzar la calidad HD.
-
-        # HTML con la API de IFrame de YouTube para controlar la calidad
         html_content = f"""
         <!DOCTYPE html>
         <html>

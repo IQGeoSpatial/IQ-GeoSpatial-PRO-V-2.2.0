@@ -6,8 +6,8 @@ from PyQt5.QtCore import QObject, pyqtSignal
 
 class ThumbnailWorker(QObject):
     """
-    Worker to generate thumbnails from .docx files in a background thread.
-    It converts docx to a temporary PDF, then extracts page images from the PDF.
+    Worker para generar miniaturas a partir de archivos .docx en un subproceso en segundo plano. Convierte el 
+    .docx a un PDF temporal y luego extrae las imágenes de las páginas del PDF.
     """
     thumbnail_generated = pyqtSignal(str, str, int) # doc_name, thumb_path, page_num
     finished = pyqtSignal()

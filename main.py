@@ -69,6 +69,6 @@ if __name__ == "__main__":
     splash.start(show_main) # Inicia la animación y asigna el callback
     sys.exit(app.exec_())
 
-#pyinstaller --noconfirm --onefile --windowed --icon=Assets\Icono\icono.ico --add-data "Assets;Assets" main.py
+# Python -m PyInstaller --noconfirm --onefile --windowed --icon=Assets\Icono\icono.ico --add-data "Assets;Assets" main.py
 #para poner instalador
 # pyinstaller --noconfirm --windowed --icon=Assets\Icono\icono.ico --add-data "Assets;Assets" main.py

@@ -4,6 +4,7 @@ class GNSSRinexController:
     def __init__(self, view):
         self.view = view
 
+    # Controlador de conversion de GNSS a Rinex
     def convertir_gnss_a_rinex(self, archivos, opciones):
         archivos_gnss = archivos.get("data", [])
         archivos_nav = archivos.get("nav", [])
@@ -15,6 +16,6 @@ class GNSSRinexController:
         resultados = gnss_rinex_service.convertir_gnss_a_rinex(
             archivos_gnss, version_rinex, interval, output_obs, output_nav, output_dir=opciones["output_dir"]
         )
-        # Muestra el resultado del primer archivo (puedes mejorar para mostrar todos)
+
         if resultados:
             self.view.mostrar_resultado_conversion(resultados[0])

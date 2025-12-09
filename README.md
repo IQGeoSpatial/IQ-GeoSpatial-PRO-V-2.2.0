@@ -1,13 +1,39 @@
-# IQ GeoSpatial PRO V2.0
+<p align="center">
+  <img src="Assets/Image/readme.png" alt="IQ GeoSpatial Technology" width="700">
+</p>
+
+# IQ GeoSpatial PRO V 2.2.0
 
 Aplicación de escritorio para la certificación de puntos geodésicos, gestión de imágenes, descarga de efemérides y conversión de documentos Word a PDF.
 
+## By IQ GeoSpatial Technology
+
 ## Características principales
-- Importación de datos desde Excel.
-- Gestión y visualización de imágenes asociadas a puntos geodésicos.
-- Descarga automática de efemérides GNSS desde servidores internacionales.
-- Conversión masiva de documentos Word a PDF con generación de miniaturas.
-- Interfaz moderna y responsiva con PyQt5.
+- Creación de Estrcutura de expediente IGN-2025
+
+- Creación de formulario:
+ - Anexo Formulario 001: Datos Generales
+ - Anexo Fromulario 002: Declaracción Jurada
+ - Anexo Fromulario 003: Declaración Jurada No Presentar Documentación Fraudalenta
+ - Anexo Fromulario 004: Diario de Observaciones
+ - Anexo Fromulario 005: Descripción Monográfica
+
+- Descarga de Efemeride:
+ - Fuente:
+  - ESA, IGS, COD, WHU, GFZ
+ Fuente:
+  - Ultra-raáída, Rápida, Final
+
+- Convertir PDF
+
+- Validación de Expediente:
+ - ! : Falta
+ - ? : No Perteneciente
+ - √ : Encontrado
+
+- Connvertir Coordenadas Geográficas a UTM (Viceversa)
+
+- Convertir GNSS a RINEX (Basado en RTKLib)
 
 ## Instalación
 1. Clona este repositorio o copia los archivos a tu equipo.
@@ -30,6 +56,10 @@ Para crear un ejecutable con PyInstaller:
 pyinstaller --noconfirm --windowed --icon=Assets\Icono\icono.ico --add-data "Assets;Assets" main.py
 ```
 
+```bash
+python -m PyInstaller --noconfirm --onefile --windowed --icon=Assets\Icono\icono.ico --add-data "Assets;Assets" main.py
+```
+
 ## Estructura del proyecto
 - `main.py`: Lanzador principal de la aplicación.
 - `GUI/`: Interfaces gráficas (ventanas, diálogos, widgets).
@@ -41,10 +71,13 @@ pyinstaller --noconfirm --windowed --icon=Assets\Icono\icono.ico --add-data "Ass
 
 ## Requisitos
 - Windows 10/11 (recomendado)
-- Python 3.10 o superior
+- Python 3.12 o superior
 - Microsoft Word instalado (para la conversión de .docx a PDF)
 
 ## Créditos
 Desarrollado por IQ GeoSpatial
 
 Contacto: iqgeospatial@gmail.com
+
+---
+© 2025 IQ GeoSpatial Technology

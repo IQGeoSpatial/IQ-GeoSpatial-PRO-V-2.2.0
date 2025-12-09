@@ -17,7 +17,7 @@ class PdfConverterController:
         self.thumbnail_worker_thread = None
         self.thumbnail_worker = None
         self.docx_files_to_convert = []
-        self.temp_zip_dir = None # Para manejar archivos extraídos de un ZIP
+        self.temp_zip_dir = None 
 
     def select_file(self):
         """Selecciona un único archivo .docx."""
@@ -44,7 +44,6 @@ class PdfConverterController:
         self.view.clear_thumbnails()
         self.view.log("Analizando fuente...")
 
-        # Limpiar directorio temporal anterior si existe
         self.cleanup_temp_dir()
 
         if path.lower().endswith('.docx'):
@@ -57,7 +56,7 @@ class PdfConverterController:
                     if not member.is_dir() and member.filename.lower().endswith('.docx') and not member.filename.startswith('__MACOSX'):
                         extracted_path = zip_ref.extract(member, self.temp_zip_dir)
                         self.docx_files_to_convert.append(extracted_path)
-        else: # Es una carpeta
+        else: 
             self.docx_files_to_convert = [
                 os.path.join(root, file)
                 for root, _, files in os.walk(path)
@@ -101,7 +100,6 @@ class PdfConverterController:
         self.view.progress_bar.setValue(0)
 
         self.worker_thread = QThread()
-        # El worker ahora recibirá la lista de archivos directamente
         self.worker = PdfConversionWorker(self.docx_files_to_convert, self.output_dir)
         self.worker.moveToThread(self.worker_thread)
 
@@ -112,6 +110,7 @@ class PdfConverterController:
         self.worker_thread.started.connect(self.worker.run)
         self.worker_thread.start()
 
+    # Vistas previas de los archivos cargados
     def on_thumbnails_finished(self):
         self.view.log("Vistas previas generadas.")
         self.view.set_controls_enabled(True)
@@ -121,6 +120,7 @@ class PdfConverterController:
         self.thumbnail_worker_thread = None
         self.thumbnail_worker = None
 
+    #proceso de conversiion de word a pdf
     def on_conversion_finished(self):
         self.view.log("Proceso de conversión finalizado.")
         self.view.set_controls_enabled(True)
@@ -130,6 +130,7 @@ class PdfConverterController:
         self.worker_thread = None
         self.worker = None
 
+    # cancelar el proceso de conversion
     def cancel_conversion(self):
         """Detiene cualquier proceso en segundo plano."""
         if self.worker:

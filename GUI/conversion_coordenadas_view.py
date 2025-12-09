@@ -29,7 +29,6 @@ class ConversionCoordenadasView(QWidget):
         self.controller = ConversionCoordenadasController(self)
         self.puntos_convertidos = []  # Lista para almacenar los puntos convertidos
 
-        # --- Agregar ícono a la ventana ---
         self.setWindowIcon(QIcon(resource_path(os.path.join("Assets", "Image", "conversioGeografica.png"))))  # Ícono de la ventana
 
         main_layout = QHBoxLayout(self)
@@ -58,8 +57,8 @@ class ConversionCoordenadasView(QWidget):
 
         # Combo zona para UTM manual (reemplazado por QLineEdit)
         self.zona_origen_lineedit = QLineEdit()
-        self.zona_origen_lineedit.setVisible(False)  # Oculto por defecto
-        self.zona_origen_lineedit.setPlaceholderText("Zona")  # Texto de ayuda
+        self.zona_origen_lineedit.setVisible(False)  
+        self.zona_origen_lineedit.setPlaceholderText("Zona") 
         self.zona_origen_lineedit.setStyleSheet("""
             QLineEdit {
                 border: 2px solid #e0e3ea;
@@ -85,11 +84,10 @@ class ConversionCoordenadasView(QWidget):
         """)
         self.zona_destino_lineedit.setPlaceholderText("Zona")
 
-        # --- Botón de cargar Excel con ícono ---
         self.btn_cargar_excel_origen = QPushButton("Importar Puntos")
         self.btn_cargar_excel_origen.setIcon(QIcon(resource_path(os.path.join("Assets", "Image", "upload_excel.png"))))  # Ícono de subir
-        self.btn_cargar_excel_origen.setIconSize(QSize(40, 43))  # Ajustar tamaño del ícono
-        self.btn_cargar_excel_origen.setToolTip("Importar puntos")  # Tooltip al pasar el mouse
+        self.btn_cargar_excel_origen.setIconSize(QSize(40, 43))  
+        self.btn_cargar_excel_origen.setToolTip("Importar puntos") 
         self.btn_cargar_excel_origen.setStyleSheet("""
             QPushButton {
                 background-color: transparent;  /* Fondo oscuro */
@@ -131,9 +129,9 @@ class ConversionCoordenadasView(QWidget):
 
         # --- Botón de exportar puntos con ícono ---
         self.btn_exportar_puntos = QPushButton("Exportar Puntos")
-        self.btn_exportar_puntos.setIcon(QIcon(resource_path(os.path.join("Assets", "Image", "download_excel.png"))))  # Ícono de bajar
-        self.btn_exportar_puntos.setIconSize(QSize(40, 40))  # Ajustar tamaño del ícono
-        self.btn_exportar_puntos.setToolTip("Exportar puntos")  # Tooltip al pasar el mouse
+        self.btn_exportar_puntos.setIcon(QIcon(resource_path(os.path.join("Assets", "Image", "download_excel.png")))) 
+        self.btn_exportar_puntos.setIconSize(QSize(40, 40))  
+        self.btn_exportar_puntos.setToolTip("Exportar puntos")  
         self.btn_exportar_puntos.setStyleSheet("""
             QPushButton {
                 background-color: transparent;  /* Fondo oscuro */
@@ -170,7 +168,6 @@ class ConversionCoordenadasView(QWidget):
         left_layout.addWidget(titulo_tabla_destino)
         left_layout.addWidget(self.tabla_destino)
 
-        # --- Botones debajo de las tablas y grupos ---
         botones_layout = QHBoxLayout()
         self.btn_convertir = QPushButton("Convertir")
         self.btn_convertir.clicked.connect(self.convertir_coordenadas)
@@ -208,7 +205,6 @@ class ConversionCoordenadasView(QWidget):
 
         # Carga un mapa base al iniciar
         self.cargar_mapa_base()
-        # Aplica el estilo moderno a toda la ventana
         self.aplicar_estilo_moderno()
 
     def resizeEvent(self, event):
@@ -227,7 +223,6 @@ class ConversionCoordenadasView(QWidget):
         # Crear el mapa base con un zoom máximo más alto y varias capas
         m = folium.Map(location=[lat, lon], zoom_start=zoom, max_zoom=20)
 
-        # Inyectar CSS para el estilo de las etiquetas
         tooltip_container_style = "<style>.leaflet-tooltip { background: transparent !important; border: none !important; box-shadow: none !important; } .leaflet-tooltip-tip { display: none !important; }</style>"
         m.get_root().header.add_child(folium.Element(tooltip_container_style))
 
@@ -311,12 +306,10 @@ class ConversionCoordenadasView(QWidget):
 
     def _configurar_panel_coordenadas(self, panel_type, radios, layout, tabla):
         """Configura dinámicamente un panel de coordenadas (origen o destino)."""
-        # Desvincula los QLineEdit de zona para que no se borren con el resto del layout.
         if panel_type == 'origen':
             self.zona_origen_lineedit.setParent(None)
         self.zona_destino_lineedit.setParent(None)
 
-        # 1. Limpiar layout de campos anteriores
         while layout.count():
             item = layout.takeAt(0)
             widget = item.widget()
@@ -334,8 +327,8 @@ class ConversionCoordenadasView(QWidget):
             campo = QLineEdit()
             if panel_type == 'destino':
                 campo.setReadOnly(True)
-            else:  # Origen
-                campo.setReadOnly(False)  # Asegurarse de que sea editable
+            else:  
+                campo.setReadOnly(False) 
 
             if label == "Altitud" and sistema == "UTM":
                 layout.addWidget(campo, i, 1)
@@ -354,14 +347,14 @@ class ConversionCoordenadasView(QWidget):
                     layout.addWidget(QLabel("Zona:"), altura_index, 2)
                     layout.addWidget(self.zona_origen_lineedit, altura_index, 3)
                     self.zona_origen_lineedit.setVisible(True)
-                    self.zona_origen_lineedit.setFixedWidth(60)  # Ajustar ancho fijo del campo Zona
-                    campos_widgets[altura_index].setFixedWidth(60)  # Contraer el campo Altitud
-                else:  # panel_type == 'destino'
+                    self.zona_origen_lineedit.setFixedWidth(60) 
+                    campos_widgets[altura_index].setFixedWidth(60)  
+                else:  
                     layout.addWidget(QLabel("Zona:"), altura_index, 2)
                     layout.addWidget(self.zona_destino_lineedit, altura_index, 3)
                     self.zona_destino_lineedit.setVisible(True)
-                    self.zona_destino_lineedit.setFixedWidth(60)  # Ajustar ancho fijo del campo Zona
-                    campos_widgets[altura_index].setFixedWidth(60)  # Contraer el campo Altitud
+                    self.zona_destino_lineedit.setFixedWidth(60)
+                    campos_widgets[altura_index].setFixedWidth(60)  
             except ValueError:
                 pass
         elif panel_type == 'origen':
@@ -384,6 +377,7 @@ class ConversionCoordenadasView(QWidget):
     def mostrar_campos_destino(self):
         self._configurar_panel_coordenadas('destino', self.destino_radios, self.destino_campos_layout, self.tabla_destino)
 
+    # Cargar datos desde un Excel a la tabla de origen
     def cargar_excel_origen(self):
         archivo, _ = QFileDialog.getOpenFileName(self, "Selecciona archivo Excel", "", "Archivos Excel (*.xlsx *.xls)")
         if archivo:
@@ -396,44 +390,35 @@ class ConversionCoordenadasView(QWidget):
             for i, fila in df.iterrows():
                 for j, valor in enumerate(fila):
                     valor_str = ""
-                    # Asegurarse de que el valor no sea nulo (NaN en pandas)
                     if pd.notna(valor):
-                        # Si es la primera columna (Nombre)
                         if j == 0:
                             try:
                                 # Intenta convertir a float y luego a int para eliminar decimales innecesarios (ej. 1.0 -> 1)
                                 valor_str = str(int(float(valor)))
                             except (ValueError, TypeError):
-                                # Si no se puede convertir (ej. es texto como "PuntoA"), úsalo tal cual
                                 valor_str = str(valor)
                         else:
-                            # Para las otras columnas, simplemente convierte a string
                             valor_str = str(valor)
                     
                     self.tabla_origen.setItem(i, j, QTableWidgetItem(valor_str))
 
+    # convertir las coordenadas
     def convertir_coordenadas(self):
         
         try:
             sistema_origen = next((r.text() for r in self.origen_radios if r.isChecked()), None)
             sistema_destino = next((r.text() for r in self.destino_radios if r.isChecked()), None)
 
-            # Si los sistemas son iguales, muestra mensaje y no convierte
             if sistema_origen == sistema_destino:
                 QMessageBox.warning(self, "Conversión no permitida", "No se puede convertir porque el sistema de origen y destino son iguales.")
                 return
 
-            # Si hay datos en la tabla de origen (Excel cargado)
             if self.tabla_origen.rowCount() > 0:
-                # Limpia los campos de destino
                 for campo in getattr(self, "destino_campos", []):
                     campo.clear()
-                # También limpiar el campo de zona de destino si existe
                 if hasattr(self, "zona_destino_lineedit"):
                     self.zona_destino_lineedit.clear()
 
-                # Se reutiliza la lógica de conversión individual para cada fila,
-                # ya que el método `convertir_lote` parece estar desactualizado y causa el error.
                 resultados = []
                 nombres = []
 
@@ -456,11 +441,9 @@ class ConversionCoordenadasView(QWidget):
                         self.tabla_origen.item(i, 3).text() if self.tabla_origen.item(i, 3) else ""  # Coord 3 (Altitud)
                     ]
 
-                    # Si el origen es UTM, se añade la zona a los valores de la fila
                     if sistema_origen == "UTM":
                         valores_fila.append(zona_utm_origen)
 
-                    # Se llama al método de conversión individual que sí está actualizado
                     resultado_fila = self.controller.convertir(sistema_origen, sistema_destino, valores_fila)
                     resultados.append(resultado_fila)
 
@@ -495,7 +478,7 @@ class ConversionCoordenadasView(QWidget):
 
                 # Si el sistema de origen es UTM, agrega el valor de la zona
                 if sistema_origen == "UTM":
-                    zona = self.zona_origen_lineedit.text()  # Cambiado aquí
+                    zona = self.zona_origen_lineedit.text() 
                     valores.append(zona)
 
                 resultado = self.controller.convertir(sistema_origen, sistema_destino, valores)
@@ -504,14 +487,14 @@ class ConversionCoordenadasView(QWidget):
                 if sistema_destino == "UTM":
                     # resultado: [Este, Norte, Zona, Letra, Altitud]
                     if resultado and len(resultado) >= 5:
-                        self.destino_campos[0].setText(str(resultado[0]))  # Este
-                        self.destino_campos[1].setText(str(resultado[1]))  # Norte
-                        self.destino_campos[2].setText(str(resultado[4]))  # Altitud
-                        self.zona_destino_lineedit.setText(str(resultado[2]))  # Zona
+                        self.destino_campos[0].setText(str(resultado[0])) 
+                        self.destino_campos[1].setText(str(resultado[1]))
+                        self.destino_campos[2].setText(str(resultado[4]))  
+                        self.zona_destino_lineedit.setText(str(resultado[2]))  
                     elif resultado and len(resultado) >= 3:
-                        self.destino_campos[0].setText(str(resultado[0]))  # Este
-                        self.destino_campos[1].setText(str(resultado[1]))  # Norte
-                        self.destino_campos[2].setText("0")  # Altitud vacío, pone "0"
+                        self.destino_campos[0].setText(str(resultado[0]))  
+                        self.destino_campos[1].setText(str(resultado[1]))  
+                        self.destino_campos[2].setText("0")  
                         self.zona_destino_lineedit.setText(str(resultado[2]))
                 else:
                     # Elipsoidal destino
@@ -538,7 +521,7 @@ class ConversionCoordenadasView(QWidget):
                         lon = float(self.tabla_destino.item(i, 2).text())
                         puntos_a_mostrar.append((lat, lon, nombre))
                     except (ValueError, AttributeError, IndexError):
-                        continue  # Ignorar filas con datos inválidos
+                        continue  
 
             elif sistema_destino == "UTM":
                 # Columnas: Nombre, Este, Norte, Altitud, Zona
@@ -552,7 +535,7 @@ class ConversionCoordenadasView(QWidget):
                         if lat is not None and lon is not None:
                             puntos_a_mostrar.append((lat, lon, nombre))
                     except (ValueError, AttributeError, IndexError):
-                        continue # Ignorar filas con datos inválidos
+                        continue 
         else:
             # Caso 2: No hay datos en la tabla, fue una conversión manual.
             try:
@@ -565,7 +548,7 @@ class ConversionCoordenadasView(QWidget):
                     if lat is not None and lon is not None:
                         puntos_a_mostrar.append((lat, lon, "Punto Manual"))
             except (ValueError, IndexError, AttributeError):
-                pass # Si los campos están vacíos o inválidos, no se añade nada
+                pass
 
         # Guardar los puntos y recargar el mapa
         self.puntos_convertidos = puntos_a_mostrar
@@ -573,8 +556,9 @@ class ConversionCoordenadasView(QWidget):
             primer_punto = self.puntos_convertidos[0]
             self.cargar_mapa_base(lat=primer_punto[0], lon=primer_punto[1], zoom=12)
         else:
-            self.cargar_mapa_base() # Cargar mapa en la vista por defecto
+            self.cargar_mapa_base()
 
+    # Limpiar los campos y tablas
     def limpiar_campos(self):
         for campo in getattr(self, "origen_campos", []):
             campo.clear()
@@ -585,18 +569,18 @@ class ConversionCoordenadasView(QWidget):
             campo.clear()
         if hasattr(self, "zona_destino_lineedit"):
             self.zona_destino_lineedit.clear()
-        # aqui incio
+
         self.tabla_origen.setRowCount(0)
         self.tabla_destino.setRowCount(0)
         self.puntos_convertidos = []
         self.cargar_mapa_base()
 
+    #Exprtar puntos de la tabla de destino en xlsx, csv, kml o kmz
     def exportar_puntos_destino(self):
         if self.tabla_destino.rowCount() == 0:
             QMessageBox.information(self, "Exportar", "No hay puntos en la tabla de destino para exportar.")
             return
 
-        # Añadir KML y KMZ a las opciones de guardado
         opciones_guardado = "Archivos KML (*.kml);;Archivos KMZ (*.kmz);;Archivos CSV (*.csv);;Archivos Excel (*.xlsx)"
         archivo, filtro_seleccionado = QFileDialog.getSaveFileName(self, "Guardar archivo", "", opciones_guardado)
 
@@ -628,7 +612,6 @@ class ConversionCoordenadasView(QWidget):
                                 lat, lon = este_norte_a_latlon(este, norte, zona)
 
                             if lat is not None and lon is not None:
-                                # simplekml espera las coordenadas como (longitud, latitud)
                                 kml.newpoint(name=nombre, coords=[(lon, lat)])
 
                         except (ValueError, AttributeError, IndexError, TypeError):
@@ -639,7 +622,7 @@ class ConversionCoordenadasView(QWidget):
                     else:  # .kmz
                         kml.savekmz(archivo)
 
-                # Lógica existente para CSV y XLSX
+                # Lógica  para CSV y XLSX
                 elif archivo.endswith('.csv') or archivo.endswith('.xlsx'):
                     column_headers = []
                     for j in range(self.tabla_destino.columnCount()):

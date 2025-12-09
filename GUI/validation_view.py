@@ -137,12 +137,14 @@ class ValidationView(QWidget):
             if item['children']:
                 self._populate_optional_items(item['children'], layout)
 
+    # Selecoion de la carpeta raiz
     def select_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Seleccionar Carpeta Raíz del Expediente")
         if folder:
             self.folder_name_label.setText(os.path.basename(folder))
             self.folder_path_label.setText(folder)
 
+    # Inicio de la validación
     def start_validation(self):
         root_path = self.folder_path_label.text()
         if not root_path or not os.path.isdir(root_path):
@@ -152,6 +154,7 @@ class ValidationView(QWidget):
         selected_optionals = {name for name, cb in self.optional_checkboxes.items() if cb.isChecked()}
         self.controller.start_validation(root_path, selected_optionals)
 
+    # Guardar el reporte de validación
     def save_report(self):
         report_content = self.results_text_edit.toPlainText()
         if not report_content:

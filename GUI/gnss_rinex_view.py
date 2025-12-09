@@ -33,16 +33,16 @@ class GNSSRinexView(QWidget):
 
     def init_ui(self):
         self.setWindowTitle("Convertir GNSS a RINEX")
+        self.setWindowIcon(QIcon(resource_path("Assets/Image/convertirRinex.png")))
         self.setMinimumSize(700, 500)
-        self.setMaximumSize(700, 500)  # <-- Evita que la ventana se expanda
+        self.setMaximumSize(700, 500) 
         self.setFixedSize(700, 500)
         main_layout = QVBoxLayout(self)
         main_layout.setSpacing(0)
         main_layout.setContentsMargins(0, 5, 0, 10)
 
-        self.setStyleSheet("background: #f4f6fa; border: none;")  # <-- Elimina el borde del marco principal
+        self.setStyleSheet("background: #f4f6fa; border: none;")  
 
-        # --- Título centrado grande, sin margen y sin espacio extra arriba/abajo ---
         titulo = QLabel("Convertir GNSS a RINEX")
         titulo.setAlignment(Qt.AlignCenter)
         titulo.setStyleSheet(
@@ -105,8 +105,8 @@ class GNSSRinexView(QWidget):
 
         # Inicializa con el primer grupo
         self.grupos = []
-        self.combo_style = combo_style  # Guarda para usar en agregar_grupo
-        self.chk_style = chk_style      # Guarda para usar en agregar_grupo
+        self.combo_style = combo_style  
+        self.chk_style = chk_style      
         self.agregar_grupo(primero=True)
 
         # --- CREA EL GRID ANTES DE USARLO ---
@@ -187,16 +187,51 @@ class GNSSRinexView(QWidget):
 
         main_layout.addLayout(grid)
 
+        # --- Mensaje de bienvenida y estado Beta ---
+        msg_box = QMessageBox(self)
+        icon_pixmap = QPixmap(resource_path("Assets/Image/ConvertirRinex.png")).scaled(
+            64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation
+        )
+        msg_box.setIconPixmap(icon_pixmap)
+        msg_box.setWindowTitle("Función en Desarrollo (Beta)")
+        msg_box.setText("Bienvenido al conversor de GNSS a RINEX. Esta herramienta está basada en la utilidad `rnxcnv` de RTKLIB y se encuentra en fase de desarrollo. Agradecemos tus comentarios para mejorarla.")
+
+        info_text = "<b>Formatos y receptores soportados:</b><br><ul>"
+        for brand, models in RTKLIB_BRANDS_MODELS.items():
+            if models:
+                info_text += f"<li><b>{brand}:</b> {', '.join(models)}</li>"
+            else:
+                info_text += f"<li><b>{brand}</b></li>"
+        info_text += "</ul><br><i>Si tu formato no está en la lista, puedes intentar la conversión de todas formas, ya que RTKLIB podría reconocerlo.</i>"
+
+        msg_box.setInformativeText(info_text)
+
+        # Botón personalizado "Aceptar"
+        btn_aceptar = QPushButton("Aceptar")
+        btn_aceptar.setStyleSheet("""
+            QPushButton {
+                background: #2c437c; color: white; font-weight: bold;
+                padding: 6px 20px; border-radius: 12px; font-size: 12px;
+            }
+            QPushButton:hover { background: #1a2a4c; }
+        """)
+        msg_box.addButton(btn_aceptar, QMessageBox.AcceptRole)
+
+        msg_box.exec_()
+
+    # Cargar archivo GNSS
     def cargar_archivo_gnss(self, label_gnss):
         archivo, _ = QFileDialog.getOpenFileName(self, "Selecciona archivo GNSS")
         if archivo:
             label_gnss.archivo = archivo  # Guarda la ruta en el label
 
+    # Cargar archivo .nav
     def cargar_archivo_nav(self, label_nav):
         archivo, _ = QFileDialog.getOpenFileName(self, "Selecciona archivo Efeméride")
         if archivo:
             label_nav.archivo = archivo  # Guarda la ruta en el label
 
+    # Metodo para la conversion de GNSS a RINEX
     def convertir(self):
         carpeta_salida = QFileDialog.getExistingDirectory(self, "Selecciona carpeta de destino")
         opciones = {
@@ -214,6 +249,7 @@ class GNSSRinexView(QWidget):
         print("arrrr: ", archivos)
         self.controller.convertir_gnss_a_rinex(archivos, opciones)
 
+    # Muestra la ruta de conversion exitosa
     def mostrar_resultado_conversion(self, resultado):
         if resultado["success"]:
             self.result_label.setText("Conversión exitosa. Archivos en: " + resultado["output_dir"])
