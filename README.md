@@ -12,24 +12,24 @@ Aplicación de escritorio para la certificación de puntos geodésicos, gestión
 - Creación de Estrcutura de expediente IGN-2025
 
 - Creación de formulario:
- - Anexo Formulario 001: Datos Generales
- - Anexo Fromulario 002: Declaracción Jurada
- - Anexo Fromulario 003: Declaración Jurada No Presentar Documentación Fraudalenta
- - Anexo Fromulario 004: Diario de Observaciones
- - Anexo Fromulario 005: Descripción Monográfica
+ * Anexo Formulario 001: Datos Generales
+ * Anexo Fromulario 002: Declaracción Jurada
+ * Anexo Fromulario 003: Declaración Jurada No Presentar Documentación Fraudalenta
+ * Anexo Fromulario 004: Diario de Observaciones
+ * Anexo Fromulario 005: Descripción Monográfica
 
 - Descarga de Efemeride:
- - Fuente:
-  - ESA, IGS, COD, WHU, GFZ
- Fuente:
-  - Ultra-raáída, Rápida, Final
+ * Fuente:
+  ** ESA, IGS, COD, WHU, GFZ
+ * Fuente:
+  ** Ultra-raáída, Rápida, Final
 
 - Convertir PDF
 
 - Validación de Expediente:
- - ! : Falta
- - ? : No Perteneciente
- - √ : Encontrado
+ * ! : Falta
+ * ? : No Perteneciente
+ * √ : Encontrado
 
 - Connvertir Coordenadas Geográficas a UTM (Viceversa)
 
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 3. Ejecuta la aplicación:
 
 ```bash
-python main.py
+python3 -m main
 ```
 
 ## Empaquetado (opcional)
@@ -72,7 +72,6 @@ python -m PyInstaller --noconfirm --onefile --windowed --icon=Assets\Icono\icono
 ## Requisitos
 - Windows 10/11 (recomendado)
 - Python 3.12 o superior
-- Microsoft Word instalado (para la conversión de .docx a PDF)
 
 ## Créditos
 Desarrollado por IQ GeoSpatial
