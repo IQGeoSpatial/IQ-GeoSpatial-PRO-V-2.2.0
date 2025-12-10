@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="Assets/Image/readme.png" alt="IQ GeoSpatial Technology" width="700">
+  <img src="Assets/Image/portada.jpeg" alt="IQ GeoSpatial Technology" width="700">
 </p>
 
 # IQ GeoSpatial PRO V 2.2.0
 
-Aplicación de escritorio para la certificación de puntos geodésicos, gestión de imágenes, descarga de efemérides y conversión de documentos Word a PDF.
+Aplicación de escritorio para la certificación de puntos geodésicos de orden C, gestión de imágenes, descarga de efemérides y conversión de documentos Word a PDF.
 
 ## By IQ GeoSpatial Technology
 
@@ -12,24 +12,24 @@ Aplicación de escritorio para la certificación de puntos geodésicos, gestión
 - Creación de Estrcutura de expediente IGN-2025
 
 - Creación de formulario:
- * Anexo Formulario 001: Datos Generales
- * Anexo Fromulario 002: Declaracción Jurada
- * Anexo Fromulario 003: Declaración Jurada No Presentar Documentación Fraudalenta
- * Anexo Fromulario 004: Diario de Observaciones
- * Anexo Fromulario 005: Descripción Monográfica
+  - Anexo Formulario 001: Datos Generales
+  - Anexo Fromulario 002: Declaracción Jurada
+  - Anexo Fromulario 003: Declaración Jurada No Presentar Documentación Fraudalenta
+  - Anexo Fromulario 004: Diario de Observaciones
+  - Anexo Fromulario 005: Descripción Monográfica
 
 - Descarga de Efemeride:
- * Fuente:
-  ** ESA, IGS, COD, WHU, GFZ
- * Fuente:
-  ** Ultra-raáída, Rápida, Final
+  - Fuente:
+    - ESA, IGS, COD, WHU, GFZ
+  - Fuente:
+    - Ultra-raáída, Rápida, Final
 
 - Convertir PDF
 
 - Validación de Expediente:
- * ! : Falta
- * ? : No Perteneciente
- * √ : Encontrado
+  - ! : Falta
+  - ? : No Perteneciente
+  - √ : Encontrado
 
 - Connvertir Coordenadas Geográficas a UTM (Viceversa)
 
