@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Assets/Image/portada.jpeg" alt="IQ GeoSpatial Technology" width="700">
+  <img src="Assets/Image/portada.jpeg" alt="IQ GeoSpatial Technology" width="auto">
 </p>
 
 # IQ GeoSpatial PRO V 2.2.0
@@ -22,7 +22,7 @@ Aplicación de escritorio para la certificación de puntos geodésicos de orden 
   - Fuente:
     - ESA, IGS, COD, WHU, GFZ
   - Fuente:
-    - Ultra-raáída, Rápida, Final
+    - Ultra-rapída, Rápida, Final
 
 - Convertir PDF
 
