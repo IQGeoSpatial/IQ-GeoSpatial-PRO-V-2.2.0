@@ -78,5 +78,11 @@ Desarrollado por IQ GeoSpatial
 
 Contacto: iqgeospatial@gmail.com
 
+## License
+
+IQ GeoSpatial Pro is licensed under the Apache License 2.0.
+You may obtain a copy of the full license in the `LICENSE` file included in this repository, or at:
+http://www.apache.org/licenses/LICENSE-2.0
+
 ---
-© 2025 IQ GeoSpatial Technology
+© 2025 IQ GeoSpatial Technology. All rights reserved.
