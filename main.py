@@ -1,5 +1,32 @@
 #Here are the contents for the file `src/main.py`:
 
+"""
+/***************************************************************************
+ IQ GeoSpatial
+             Folder structure for Geodetic Point Certification
+             Downloads Efemerides ESA
+             Creating Forms
+             KMZ/KML/UTM Coordinate Conversion
+             file validation
+             Convert GNSS files to RINEX
+
+                ------------------------------------------
+        begin                : 2025-08-06
+        git sha              : $Format:%H$
+        copyright            : (C) 2025 by IQ GeoSpatial
+        email                : iqgeospatial@gmail.com
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify
+ *   IQ GeoSpatial Pro is licensed under the Apache License 2.0.
+ *   You may obtain a copy of the full license in the `LICENSE` file included in this repository, or at:
+ *   http://www.apache.org/licenses/LICENSE-2.0                                 *
+ *                                                                         *
+ ***************************************************************************/
+"""
+
 import sys
 import os
 
