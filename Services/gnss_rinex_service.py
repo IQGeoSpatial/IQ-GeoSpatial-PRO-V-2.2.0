@@ -26,7 +26,7 @@ def convertir_gnss_a_rinex(archivos_gnss, version_rinex, sampling_interval, outp
             archivo_gnss
         ]
 
-        print("Comando ejecutado:", " ".join(cmd))  # Depuración
+        # print("Comando ejecutado:", " ".join(cmd))  # Depuración
         try:
             proc = subprocess.run(cmd, capture_output=True, text=True)
             print("STDOUT:", proc.stdout)

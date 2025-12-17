@@ -91,10 +91,6 @@ class LicenciaDialog(QDialog):
         self.user_label.setStyleSheet("font-size: 12px; color: #16a085;")
         info_layout.addWidget(self.user_label)
 
-        # self.code_label = QLabel("Licencia: -")
-        # self.code_label.setAlignment(Qt.AlignCenter)
-        # self.code_label.setStyleSheet("font-size: 12px; color: #8e44ad;")
-        # info_layout.addWidget(self.code_label)
         
         layout.addWidget(info_widget, alignment=Qt.AlignCenter)
 
@@ -143,15 +139,10 @@ class LicenciaDialog(QDialog):
 
         if licencia_data:
             usuario, licencia, _ = licencia_data
-            # Modificación: En lugar de revalidar la licencia contra el hardware cada vez,
-            # ahora solo verificamos que exista una licencia guardada. Si existe,
-            # se considera activa para la interfaz. La validación estricta solo
-            # ocurre al ingresar una nueva licencia.
             if usuario and licencia:
                 self.estado_label.setText("Estado: Activada")
                 self.estado_label.setStyleSheet("font-size: 12px; color: #27ae60; font-weight: bold;")
                 self.user_label.setText(f"Usuario: {usuario}")
-                # self.code_label.setText(f"Licencia: {licencia}")
 
                 # Ocultar campos de activación
                 self.btn_activar.hide()
@@ -229,7 +220,7 @@ class SolicitudLicenciaDialog(QDialog):
     def enviar_solicitud(self):
         # Configura aquí tu correo y contraseña de aplicación
         remitente = "iqgeospatial@gmail.com"  # <-- Cambia esto por tu correo
-        password = "llvc ubgz oipr izmp"  # <-- Cambia esto por tu contraseña de aplicación
+        password = "CONFIG"  # <-- Cambia esto por tu contraseña de aplicación
         destinatario = remitente  # Puedes cambiarlo si quieres recibir en otro correo
         # Mensaje personalizado y profesional
         nombre = self.nombre_input.text().strip()

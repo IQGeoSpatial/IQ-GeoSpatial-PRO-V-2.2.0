@@ -15,7 +15,7 @@ from utils.efemeride import date_to_gps_week, date_to_julian_day, FTP_CONFIG, EP
 
 class FtpWorker(QThread):
     """
-    Worker thread to handle the FTP download process without freezing the GUI.
+    Subproceso de trabajo para manejar el proceso de descarga FTP sin congelar la GUI.
     """
     log_message = pyqtSignal(str)
     progress_update = pyqtSignal(int)
@@ -30,7 +30,7 @@ class FtpWorker(QThread):
 
     def run(self):
         """
-        Connects to the ESA FTP server and downloads the daily broadcast ephemeris file.
+        Se conecta al servidor FTP de la ESA y descarga el archivo de efemérides de transmisión diaria.
         """
         try:
             config = FTP_CONFIG.get(self.source)
@@ -164,12 +164,9 @@ class EfemeridesDialog(QDialog):
         self.setWindowTitle("Descargar Efemérides")
         self.setObjectName("EfemeridesDialog")
         logo_path = resource_path(os.path.join("Assets", "Image", "efemeride.png"))
-        # print("[DEBUG] Logo path:", logo_path)
-        # print("[DEBUG] Existe logo:", os.path.exists(logo_path))
         if os.path.exists(logo_path):
             self.setWindowIcon(QIcon(logo_path))
         else:
-            # print("[DEBUG] No se encontró el logo en la ruta esperada.")
             pass
         self.setMinimumSize(800, 500)
 
@@ -352,7 +349,6 @@ class EfemeridesDialog(QDialog):
         self.worker.start()
 
     def show_status_message(self, message):
-        # No mostrar texto en la barra de progreso, solo la barra visual
         self.progress_bar.setTextVisible(False)
 
     def update_progress(self, value):

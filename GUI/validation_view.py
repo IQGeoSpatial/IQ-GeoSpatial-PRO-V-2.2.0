@@ -137,7 +137,7 @@ class ValidationView(QWidget):
             if item['children']:
                 self._populate_optional_items(item['children'], layout)
 
-    # Selecoion de la carpeta raiz
+    # Seleccion de la carpeta raiz
     def select_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Seleccionar Carpeta Raíz del Expediente")
         if folder:

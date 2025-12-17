@@ -4,6 +4,9 @@
              Folder structure for Geodetic Point Certification
              Downloads Efemerides ESA
              Creating Forms
+             KMZ/KML/UTM Coordinate Conversion
+             file validation
+             Convert GNSS files to RINEX
 
                 ------------------------------------------
         begin                : 2025-08-06
@@ -14,10 +17,10 @@
 
 /***************************************************************************
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   This program is free software; you can redistribute it and/or modify
+ *   IQ GeoSpatial Pro is licensed under the Apache License 2.0.
+ *   You may obtain a copy of the full license in the `LICENSE` file included in this repository, or at:
+ *   http://www.apache.org/licenses/LICENSE-2.0                                 *
  *                                                                         *
  ***************************************************************************/
 """

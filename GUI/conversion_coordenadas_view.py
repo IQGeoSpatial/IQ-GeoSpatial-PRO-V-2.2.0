@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QUrl, QSize
 from PyQt5.QtGui import QIcon
-from utils.resource_path import resource_path  # Importar resource_path para manejar rutas
+from utils.resource_path import resource_path  
 from utils.map_utils import este_norte_a_latlon
 from Controllers.conversion_coordenadas_controller import ConversionCoordenadasController
 import folium, tempfile, os

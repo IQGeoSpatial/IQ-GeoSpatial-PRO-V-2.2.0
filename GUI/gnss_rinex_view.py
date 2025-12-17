@@ -2,8 +2,8 @@ from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFileDialog, QComboBox,
     QCheckBox, QGroupBox, QGridLayout, QSizePolicy, QFrame, QScrollArea, QMessageBox
 )
-from PyQt5.QtGui import QPixmap, QFont, QIcon  # Agrega esta importación
-from PyQt5.QtCore import Qt, QSize  # Corrige aquí la importación
+from PyQt5.QtGui import QPixmap, QFont, QIcon  
+from PyQt5.QtCore import Qt, QSize  
 from Controllers.gnss_rinex_controller import GNSSRinexController
 from utils.resource_path import resource_path
 import os
@@ -50,7 +50,7 @@ class GNSSRinexView(QWidget):
             "margin-top: 1px; margin-bottom: 1px; padding-top: 0px; padding-bottom: 0px;"
         )
         main_layout.addWidget(titulo)
-        main_layout.addSpacing(30)  # <-- Espacio entre título y área de archivos
+        main_layout.addSpacing(30)  
 
         # --- Scroll area para los grupos ---
         self.scroll_area = QScrollArea()

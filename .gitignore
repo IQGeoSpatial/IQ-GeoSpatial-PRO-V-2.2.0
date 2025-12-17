@@ -7,6 +7,9 @@ build/
 __pycache__/
 config.ini
 main.spec
-generar_licencia.py
-licencia_utils.py
-obtener_mac.bat
+installer_script.iss
+Utils/generar_licencia.py
+GUI/licencia_dialog.py
+Utils/licencia_utils.py
+Utils/obtener_mac.bat
+Utils/Cleaning_file_temp.py

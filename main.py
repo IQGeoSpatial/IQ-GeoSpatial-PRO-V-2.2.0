@@ -3,15 +3,10 @@
 import sys
 import os
 
-# --- Solución al ModuleNotFoundError ---
-# Esta sección debe estar ANTES de cualquier importación de tu proyecto (GUI, utils, etc.)
-# Añade el directorio raíz del proyecto (donde se encuentra este archivo main.py)
-# a la ruta de búsqueda de Python. Esto asegura que los módulos como 'utils' y 'GUI'
-# se encuentren siempre, tanto en desarrollo como en el ejecutable de PyInstaller.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
-# --- Fin de la solución ---
+
 
 from PyQt5.QtWidgets import QApplication
 from GUI.dashboard_gui import DashboardApp
@@ -19,14 +14,13 @@ from GUI.splash import SplashScreen
 from GUI.themes import LIGHT_THEME
 from utils.resource_path import resource_path
 
-
 import os
 import tempfile
 import time
 
 def limpiar_temp(dias=1):
     """Limpia archivos temporales creados por esta aplicación que son más antiguos que 'dias'."""
-    temp_dir = tempfile.gettempdir() # C:\Users\user\AppData\Local\Temp
+    temp_dir = tempfile.gettempdir() 
     ahora = time.time()
     # Prefijos de archivos temporales usados por la aplicación
     prefijos_app = ("iq_", "recorte_", "mapa_temp")

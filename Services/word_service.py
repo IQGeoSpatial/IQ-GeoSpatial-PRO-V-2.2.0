@@ -278,7 +278,7 @@ class WordGenerator:
 
                 # Eliminar cualquier fila que contenga un placeholder no reemplazado
                 filas_a_eliminar = []
-                for i, row in enumerate(table.rows[1:], 1):  # Saltar cabecera
+                for i, row in enumerate(table.rows[1:], 1): 
                     for cell in row.cells:
                         if "{{" in cell.text or "}}" in cell.text:
                             filas_a_eliminar.append(i)
@@ -312,16 +312,12 @@ class WordGenerator:
             for form_name in self.seleccionados:
                 template_path = resource_path(os.path.join("Assets", "Templates", f"{form_name.lower().replace(' ', '_')}.docx"))
                 if not os.path.exists(template_path):
-                    # print(f"Advertencia: No se encontró la plantilla para {form_name} en {template_path}")
                     continue
 
                 if form_name == "Formulario 001":
                     # --- Solo hoja 1 ---
                     doc = Document(template_path)
                     contexto_general = self._contexto_formulario_001()
-                    # print('--- CONTENIDO DE LA HOJA 1 (Formulario 001) ---')
-                    # for k, v in contexto_general.items():
-                    #     print(f"CLAVE: '{k}' | VALOR: '{v}'")
                     self._fill_geodetic_points_table(doc)
                     self._replace_all_placeholders(doc, contexto_general)
                     # --- Insertar imagen de firma si existe ---
@@ -499,7 +495,8 @@ class WordGenerator:
                         for k, v in contexto_para_este_punto.items():
                             clave_norm = k.strip('{}').replace(' ', '_').replace('-', '_').upper()
                             if clave_norm in ['V', 'I']:
-                                continue  # No sobrescribir V/I aquí, se hace al final
+                                continue  
+                            
                             claves = set()
                             claves.add(k)
                             claves.add(k.upper())
@@ -560,18 +557,10 @@ class WordGenerator:
                             for variante in variantes:
                                 contexto_extendido[variante] = valor if valor is not None else ''
 
-                        # No agregar FIRMA ni RUTA_FIRMA al contexto del punto
-
 
                         # Depuración: mostrar el valor de todas las variantes de V e I en el contexto
                         variantes_v = [k for k in contexto_extendido.keys() if 'V' in k.upper() and len(k.replace('{','').replace('}','')) <= 3]
                         variantes_i = [k for k in contexto_extendido.keys() if 'I' in k.upper() and len(k.replace('{','').replace('}','')) <= 3]
-                        # print(f"Contexto para punto {punto_nombre} (solo variantes V):")
-                        # for k in variantes_v:
-                        #     print(f"  -> '{k}': '{contexto_extendido[k]}'")
-                        # print(f"Contexto para punto {punto_nombre} (solo variantes I):")
-                        # for k in variantes_i:
-                        #     print(f"  -> '{k}': '{contexto_extendido[k]}'")
 
                         doc_punto = Document(template_path)
                         self._replace_all_placeholders(doc_punto, contexto_extendido)
@@ -579,9 +568,6 @@ class WordGenerator:
 
 
                         # Usar siempre las rutas de imagenes cargadas al programa (image_paths_dict), si existen
-                        # Depuración: imprimir image_paths_dict y punto_nombre
-                        # print("image_paths_dict:", image_paths_dict)
-                        # print("punto_nombre:", punto_nombre)
                         img_dict = image_paths_dict.get(punto_nombre, {}) if image_paths_dict else {}
                         placeholders_imagenes = {
                             "{{IMAGEN_MEDICION_ALTURA_DE_LA_ANTENA}}": img_dict.get("RUTA_ALTURA_DE_ANTENA") or self._safe_get(row, "RUTA_ALTURA_DE_ANTENA"),
@@ -589,8 +575,7 @@ class WordGenerator:
                             "{{IMAGEN_POSICIONAMIENTO_GPS_GNSS}}": img_dict.get("RUTA_POSICIONAMIENTO_GPS_GNSS") or self._safe_get(row, "RUTA_POSICIONAMIENTO_GPS_GNSS"),
                             "{{IMAGEN_DISCO_DE_BRONCE_POSICIONAMIENTO}}": img_dict.get("RUTA_DISCO_DE_BRONCE") or self._safe_get(row, "RUTA_DISCO_DE_BRONCE")
                         }
-                        # print ("posible", img_dict)
-                        # print("RUTA: ", placeholders_imagenes)
+
                         self.reemplazar_imagenes_en_docx(doc_punto, placeholders_imagenes)
 
                         output_filename = f"{form_name}_{punto_nombre}.docx"
@@ -609,10 +594,6 @@ class WordGenerator:
         excepto para {{FIRMA}}, donde inserta la imagen si la ruta existe.
         Solo inserta una vez la imagen por párrafo/celda aunque el placeholder esté repetido.
         """
-        
-        # print("[reemplazar_imagenes_en_docx] Placeholders de imágenes y rutas:")
-        # for key, img_path in placeholders_imagenes.items():
-        #     print(f"  {key}: {img_path}")
 
         # Definir dimensiones personalizadas para cada placeholder
         placeholder_dims = {
